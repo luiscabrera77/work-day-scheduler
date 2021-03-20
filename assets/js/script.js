@@ -1,9 +1,9 @@
 // global variables
 var containerEl = $('.container');
-var time = parseInt(moment().format('H'));
 
-// write today's date on top
+// write today's date on top and get the current hour
 $('#currentDay').text(moment().format('dddd, MMMM Do YYYY'));
+var time = parseInt(moment().format('H'));
 
 // div elements to contain each hour block
 var div9am = $('<div>').val(9);
@@ -198,4 +198,34 @@ $('.saveBtn').on("click", function () {
   }
 })
 
+// Display time
+function getTime () {
+  $('#currentTime').text(moment().format('h:mm:ss a'));
+}
+
+// Refresh time and colors 
+function refreshTime() {
+  setInterval(getTime, 1000);
+  setInterval(updateInputColors,1000);
+}
+
+/*
+to do: a more efficient function to update colors
+would be to run updateInputColors in the next full hour, 
+and then, run it with an Interval every 3,600,000 Milliseconds
+*/
+
+var actionsEl = document.querySelector(".actions");
+var buttonEl = document.createElement("button");
+buttonEl.className = "btn btn-danger btn-lg mb-5 mt-5";
+buttonEl.textContent = "Clear Schedule";
+actionsEl.appendChild(buttonEl);
+
+buttonEl.addEventListener("click", function () {
+  localStorage.clear();
+  location.reload();
+})
+
+getTime();
+refreshTime();
 updateInputColors();
