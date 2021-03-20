@@ -1,9 +1,17 @@
 // global variables
 var containerEl = $('.container');
 
-// write today's date on top and get the current hour
+// Display today's date on top 
 $('#currentDay').text(moment().format('dddd, MMMM Do YYYY'));
-var time = parseInt(moment().format('H'));
+
+// Display time and refresh
+function getTime () {
+  $('#currentTime').text(moment().format('h:mm:ss a'));
+}
+
+function refreshTime() {
+  setInterval(getTime, 1000);
+}
 
 // div elements to contain each hour block
 var div9am = $('<div>').val(9);
@@ -105,72 +113,112 @@ containerEl.append(div3pm);
 containerEl.append(div4pm);
 containerEl.append(div5pm);
 
-// change input color based on the time
+// change input color based on the CURRENT hour
 function updateInputColors() {
 
-  if (div9am.val() < time) {
+  if (div9am.val() < parseInt(moment().format('H'))) {
+      input9am.removeClass('present')
+      input9am.removeClass('future') 
       input9am.addClass('past')
-  } else if (div9am.val() > time) {
+  } else if (div9am.val() > parseInt(moment().format('H'))) {
       input9am.addClass('future')
   } else {
+      input9am.removeClass('future')
       input9am.addClass('present')
   }
-  if (div10am.val() < time) {
+
+  if (div10am.val() < parseInt(moment().format('H'))) {
+      input10am.removeClass('present')
+      input10am.removeClass('future')  
       input10am.addClass('past')
-  } else if (div9am.val() > time) {
+  } else if (div10am.val() > parseInt(moment().format('H'))) {
       input10am.addClass('future')
   } else {
+      input10am.removeClass('future')
       input10am.addClass('present')
   }
-  if (div11am.val() < time) {
+
+  if (div11am.val() < parseInt(moment().format('H'))) {
+      input11am.removeClass('present')
+      input11am.removeClass('future')  
       input11am.addClass('past')
-  } else if (div11am.val() > time) {
+  } else if (div11am.val() > parseInt(moment().format('H'))) {
       input11am.addClass('future')
   } else {
+      input11am.removeClass('future')   
       input11am.addClass('present')
   }
-  if (div12pm.val() < time) {
+
+  if (div12pm.val() < parseInt(moment().format('H'))) {
+      input12pm.removeClass('present')
+      input12pm.removeClass('future')  
       input12pm.addClass('past')
-  } else if (div12pm.val() > time) {
+  } else if (div12pm.val() > parseInt(moment().format('H'))) {
       input12pm.addClass('future')
-  } else {
+  } else { 
+      input12pm.removeClass('future')   
       input12pm.addClass('present')
   }
-  if (div1pm.val() < time) {
+
+  if (div1pm.val() < parseInt(moment().format('H'))) {
+      input1pm.removeClass('present')
+      input1pm.removeClass('future')  
       input1pm.addClass('past')
-  } else if (div1pm.val() > time) {
+  } else if (div1pm.val() > parseInt(moment().format('H'))) {
       input1pm.addClass('future')
   } else {
+      input1pm.removeClass('future')   
       input1pm.addClass('present')
   }
-  if (div2pm.val() < time) {
+
+  if (div2pm.val() < parseInt(moment().format('H'))) {
+      input2pm.removeClass('present')
+      input2pm.removeClass('future')  
       input2pm.addClass('past')
-  } else if (div2pm.val() > time) {
+  } else if (div2pm.val() > parseInt(moment().format('H'))) {
       input2pm.addClass('future')
   } else {
+      input2pm.removeClass('future')    
       input2pm.addClass('present')
   }
-  if (div3pm.val() < time) {
+
+  if (div3pm.val() < parseInt(moment().format('H'))) {
+      input3pm.removeClass('present')
+      input3pm.removeClass('future')  
       input3pm.addClass('past')
-  } else if (div3pm.val() > time) {
-      input3pm.addClass('future')
+  } else if (div3pm.val() > parseInt(moment().format('H'))) {
+      input3pm.addClass('future')  
   } else {
+      input3pm.removeClass('future')
       input3pm.addClass('present')
   }
-  if (div4pm.val() < time) {
+
+  if (div4pm.val() < parseInt(moment().format('H'))) {
+      input4pm.removeClass('present')
+      input4pm.removeClass('future')  
       input4pm.addClass('past')
-  } else if (div4pm.val() > time) {
+  } else if (div4pm.val() > parseInt(moment().format('H'))) {
       input4pm.addClass('future')
   } else {
+      input4pm.removeClass('future')  
       input4pm.addClass('present')
   }
-  if (div5pm.val() < time) {
+  
+  if (div5pm.val() < parseInt(moment().format('H'))) {
+      input5pm.removeClass('present')
+      input5pm.removeClass('future')  
       input5pm.addClass('past')
-  } else if (div5pm.val() > time) {
+  } else if (div5pm.val() > parseInt(moment().format('H'))) {
       input5pm.addClass('future')
   } else {
+      input5pm.removeClass('future')  
       input5pm.addClass('present')
   }
+}
+
+// Refresh colors 
+function refreshColors () {
+  setInterval(updateInputColors, 1000);
 }
 
 // Save values fo inputs to localstorage
@@ -198,23 +246,7 @@ $('.saveBtn').on("click", function () {
   }
 })
 
-// Display time
-function getTime () {
-  $('#currentTime').text(moment().format('h:mm:ss a'));
-}
-
-// Refresh time and colors 
-function refreshTime() {
-  setInterval(getTime, 1000);
-  setInterval(updateInputColors,1000);
-}
-
-/*
-to do: a more efficient function to update colors
-would be to run updateInputColors in the next full hour, 
-and then, run it with an Interval every 3,600,000 Milliseconds
-*/
-
+// clear schedule button
 var actionsEl = document.querySelector(".actions");
 var buttonEl = document.createElement("button");
 buttonEl.className = "btn btn-danger btn-lg mb-5 mt-5";
@@ -226,6 +258,8 @@ buttonEl.addEventListener("click", function () {
   location.reload();
 })
 
+// call functions
+updateInputColors(); //prevents screen flick
 getTime();
 refreshTime();
-updateInputColors();
+refreshColors();
