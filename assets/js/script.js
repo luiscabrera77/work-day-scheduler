@@ -173,4 +173,29 @@ function updateInputColors() {
   }
 }
 
+// Save values fo inputs to localstorage
+$('.saveBtn').on("click", function () {
+  var btnClicked = this.value;
+
+  if (btnClicked == 9) {
+      localStorage.setItem('9am', input9am.val());
+  } else if (btnClicked == 10) {
+      localStorage.setItem('10am', input10am.val());
+  } else if (btnClicked == 11) {
+      localStorage.setItem('11am', input11am.val());
+  } else if (btnClicked == 12) {
+      localStorage.setItem('12pm', input12pm.val());
+  } else if (btnClicked == 1) {
+      localStorage.setItem('1pm', input1pm.val());
+  } else if (btnClicked == 2) {
+      localStorage.setItem('2pm', input2pm.val());
+  } else if (btnClicked == 3) {
+      localStorage.setItem('3pm', input3pm.val());
+  } else if (btnClicked == 4) {
+      localStorage.setItem('4pm', input4pm.val());
+  } else if (btnClicked == 5) {
+      localStorage.setItem('5pm', input5pm.val());
+  }
+})
+
 updateInputColors();
