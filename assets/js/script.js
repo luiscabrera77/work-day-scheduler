@@ -1,5 +1,9 @@
 // global variables
 var containerEl = $('.container');
+var time = parseInt(moment().format('H'));
+
+// write today's date on top
+$('#currentDay').text(moment().format('dddd, MMMM Do YYYY'));
 
 // div elements to contain each hour block
 var div9am = $('<div>').val(9);
@@ -100,3 +104,73 @@ containerEl.append(div2pm);
 containerEl.append(div3pm);
 containerEl.append(div4pm);
 containerEl.append(div5pm);
+
+// change input color based on the time
+function updateInputColors() {
+
+  if (div9am.val() < time) {
+      input9am.addClass('past')
+  } else if (div9am.val() > time) {
+      input9am.addClass('future')
+  } else {
+      input9am.addClass('present')
+  }
+  if (div10am.val() < time) {
+      input10am.addClass('past')
+  } else if (div9am.val() > time) {
+      input10am.addClass('future')
+  } else {
+      input10am.addClass('present')
+  }
+  if (div11am.val() < time) {
+      input11am.addClass('past')
+  } else if (div11am.val() > time) {
+      input11am.addClass('future')
+  } else {
+      input11am.addClass('present')
+  }
+  if (div12pm.val() < time) {
+      input12pm.addClass('past')
+  } else if (div12pm.val() > time) {
+      input12pm.addClass('future')
+  } else {
+      input12pm.addClass('present')
+  }
+  if (div1pm.val() < time) {
+      input1pm.addClass('past')
+  } else if (div1pm.val() > time) {
+      input1pm.addClass('future')
+  } else {
+      input1pm.addClass('present')
+  }
+  if (div2pm.val() < time) {
+      input2pm.addClass('past')
+  } else if (div2pm.val() > time) {
+      input2pm.addClass('future')
+  } else {
+      input2pm.addClass('present')
+  }
+  if (div3pm.val() < time) {
+      input3pm.addClass('past')
+  } else if (div3pm.val() > time) {
+      input3pm.addClass('future')
+  } else {
+      input3pm.addClass('present')
+  }
+  if (div4pm.val() < time) {
+      input4pm.addClass('past')
+  } else if (div4pm.val() > time) {
+      input4pm.addClass('future')
+  } else {
+      input4pm.addClass('present')
+  }
+  if (div5pm.val() < time) {
+      input5pm.addClass('past')
+  } else if (div5pm.val() > time) {
+      input5pm.addClass('future')
+  } else {
+      input5pm.addClass('present')
+  }
+}
+
+updateInputColors();
