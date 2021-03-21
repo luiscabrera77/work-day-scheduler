@@ -18,10 +18,11 @@ A simple calendar application that allows a user to save events for each hour of
 
 ## Bonus features
 - Includes a button to clear calendar
-- Updates the color automatically 
+- Displays time at the top
+- Updates the background colore of the rows automatically without needing to refresh
 
 ## Live app
 https://luiscabrera77.github.io/work-day-scheduler/
 
 ## Screenshots
-Pending
+![WorkDayScheduler](https://user-images.githubusercontent.com/54341829/111892420-62907c00-89c9-11eb-8711-0d07e52d447d.png)
